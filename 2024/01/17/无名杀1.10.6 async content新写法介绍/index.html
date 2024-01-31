@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Reagan" />
+
+
+
+<meta name="description" content="无名杀1.10.6 async content新写法介绍1.异步、回调函数、Promise、生成器、await &amp; async异步JavaScript是单线程，那么如何实现异步？如何应对阻塞？ 事实上，JavaScript分为两种模式：  同步模式 在同步模式下，浏览器会按照顺序一步一步执行。在上一行执行完毕后才会执行下一行，也就是同步程序。也就是说，同步并不是同时执行，而是排队执行。 这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无名杀1.10.6 &#96;async content&#96;新写法介绍">
+<meta property="og:url" content="http://example.com/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="CrazyWorld">
+<meta property="og:description" content="无名杀1.10.6 async content新写法介绍1.异步、回调函数、Promise、生成器、await &amp; async异步JavaScript是单线程，那么如何实现异步？如何应对阻塞？ 事实上，JavaScript分为两种模式：  同步模式 在同步模式下，浏览器会按照顺序一步一步执行。在上一行执行完毕后才会执行下一行，也就是同步程序。也就是说，同步并不是同时执行，而是排队执行。 这">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-17T09:36:03.000Z">
+<meta property="article:modified_time" content="2024-01-17T09:42:39.055Z">
+<meta property="article:author" content="Reagan">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="CrazyWorld" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>无名杀1.10.6 `async content`新写法介绍 | CrazyWorld</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-无名杀1.10.6 async content新写法介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/" class="article-date">
+      <time datetime="2024-01-17T09:36:03.000Z" itemprop="datePublished">2024-01-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      无名杀1.10.6 `async content`新写法介绍
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="无名杀1-10-6-async-content新写法介绍"><a href="#无名杀1-10-6-async-content新写法介绍" class="headerlink" title="无名杀1.10.6 async content新写法介绍"></a>无名杀1.10.6 <code>async content</code>新写法介绍</h3><h4 id="1-异步、回调函数、Promise、生成器、await-async"><a href="#1-异步、回调函数、Promise、生成器、await-async" class="headerlink" title="1.异步、回调函数、Promise、生成器、await &amp; async"></a>1.异步、回调函数、Promise、生成器、await &amp; async</h4><h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a><code>异步</code></h5><p>JavaScript是单线程，那么如何实现异步？如何应对阻塞？</p>
+<p>事实上，JavaScript分为两种模式：</p>
+<ul>
+<li><p>同步模式</p>
+<p>在同步模式下，浏览器会按照顺序一步一步执行。在上一行执行完毕后才会执行下一行，也就是<strong>同步程序</strong>。也就是说，同步并不是同时执行，而是排队执行。</p>
+<p>这里有一个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extension.js</span></span><br><span class="line">game.<span class="keyword">import</span>(<span class="string">&quot;extension&quot;</span>, <span class="keyword">function</span> (<span class="params">lib, game, ui, get, ai, _status</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;无名扩展&quot;</span>, <span class="attr">content</span>: <span class="keyword">function</span> (<span class="params">config, pack</span>) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;, <span class="attr">package</span>: &#123;</span><br><span class="line">            <span class="attr">character</span>: &#123;</span><br><span class="line">                <span class="attr">character</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: [<span class="string">&quot;male&quot;</span>, <span class="string">&quot;shu&quot;</span>, <span class="number">4</span>, [<span class="string">&#x27;test&#x27;</span>], []]</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">translate</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: <span class="string">&#x27;测试&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">skill</span>: &#123;</span><br><span class="line">                <span class="attr">skill</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: &#123;</span><br><span class="line">                        <span class="attr">enable</span>:<span class="string">&#x27;phaseUse&#x27;</span>,</span><br><span class="line">                        <span class="attr">content</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;content 开始执行&#x27;</span>)</span><br><span class="line">                            player.<span class="title function_">draw</span>()</span><br><span class="line">                            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行摸牌&#x27;</span>)</span><br><span class="line">                            player.<span class="title function_">loseHp</span>()</span><br><span class="line">                            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;执行失去体力&#x27;</span>)</span><br><span class="line">                            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;结束&#x27;</span>)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">translate</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: <span class="string">&#x27;测试&#x27;</span>,</span><br><span class="line">                    <span class="attr">test_info</span>: <span class="string">&#x27;测试&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// console打印输出</span></span><br><span class="line"><span class="title class_">VM1808</span>:<span class="number">5</span> content 开始执行</span><br><span class="line"><span class="title class_">VM1808</span>:<span class="number">7</span> 执行摸牌</span><br><span class="line"><span class="title class_">VM1808</span>:<span class="number">9</span> 执行失去体力</span><br><span class="line"><span class="title class_">VM1808</span>:<span class="number">10</span> 结束</span><br></pre></td></tr></table></figure>
+
+<p>上述非常简单、容易理解。但是这种排队执行的机制，一旦中间某个任务花费时间较长，就会卡死、阻塞。</p>
+</li>
+<li><p>异步模式</p>
+<p>异步模式下的代码较为跳跃（<strong>省流：菜就多练</strong>），Js线程发起一个调用，然后继续执行其他任务。此时异步线程会单独去执行这个异步任务，执行完毕后会将这个任务回调，放入消息队列排队。Js主线程在完成本轮其他任务之后，会依次执行消息队列中的任务。Js是单线程的，但是浏览器不是单线程的。</p>
+</li>
+</ul>
+<blockquote>
+<p>What is <code>Asynchronous programming(异步编程)</code>？</p>
+<p>异步编程技术使你的程序可以在执行一个可能长期运行的任务的同时继续对其他事件做出反应而不必等待任务完成。与此同时，你的程序也将在任务完成后显示结果。你下达一个指令，就继续执行后续代码，而不会等待它执行完毕再执行后续代码。</p>
+</blockquote>
+<p>有意思的一点是，Js异步编程方案的曾经是<code>回调函数</code>。</p>
+<h5 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a><code>回调函数</code></h5><blockquote>
+<p>What is <code>Callbacks(回调)</code>?</p>
+<p>回调函数是一个被传递到另一个函数中的会在适当的时候被调用的函数。由定义者定义，交给执行者执行。回调函数曾经是 JavaScript 中实现异步函数的主要方式。但是直接使用传统回调方式去完成复杂的异步流程，就会出现夸张的回调嵌套（回调地狱）。因此，<strong>CommonJS 社区</strong>提出了<code>Promise规范</code>。为异步编程提供一种强大规范的方案。</p>
+</blockquote>
+<h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a><code>Promise</code></h5><blockquote>
+<p>What is <code>Promise</code>?</p>
+<p>Promise 是现代 JavaScript 中异步编程的基础，是一个由异步函数返回的可以向我们指示当前操作所处的状态的对象。在 Promise 返回给调用者的时候，操作往往还没有完成，但 Promise 对象可以让我们操作最终完成时对其进行处理（无论Fulfilled成功还是Rejected失败）。</p>
+</blockquote>
+<p>基本用法：</p>
+<p>Promise是一个全局类型，可以用它来创建一个Promise实例。</p>
+<p>来试试不用新写法，也不用step,就可以直接获取摸到的牌吧！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extension.js</span></span><br><span class="line">game.<span class="keyword">import</span>(<span class="string">&quot;extension&quot;</span>, <span class="keyword">function</span> (<span class="params">lib, game, ui, get, ai, _status</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;无名扩展&quot;</span>, <span class="attr">content</span>: <span class="keyword">function</span> (<span class="params">config, pack</span>) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;, <span class="attr">package</span>: &#123;</span><br><span class="line">            <span class="attr">character</span>: &#123;</span><br><span class="line">                <span class="attr">character</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: [<span class="string">&quot;male&quot;</span>, <span class="string">&quot;shu&quot;</span>, <span class="number">4</span>, [<span class="string">&#x27;test&#x27;</span>], []]</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">translate</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: <span class="string">&#x27;测试&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">skill</span>: &#123;</span><br><span class="line">                <span class="attr">skill</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: &#123;</span><br><span class="line">                        <span class="attr">enable</span>:<span class="string">&#x27;phaseUse&#x27;</span>,</span><br><span class="line">                        <span class="attr">content</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                            <span class="keyword">const</span> promise=<span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve,reject</span>)&#123;</span><br><span class="line">                                <span class="title function_">resolve</span>(player.<span class="title function_">draw</span>())</span><br><span class="line">                            &#125;)</span><br><span class="line">                            promise.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">draw</span>)&#123;</span><br><span class="line">                                game.<span class="title function_">log</span>(<span class="string">&#x27;摸牌成功！摸了：&#x27;</span>,draw.<span class="property">result</span>)</span><br><span class="line">                            &#125;)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">translate</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: <span class="string">&#x27;测试&#x27;</span>,</span><br><span class="line">                    <span class="attr">test_info</span>: <span class="string">&#x27;测试&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果我们想要做更多的操作，就依然会出现回调函数嵌套的问题，Promise就没有了意义，而这种方式是错误的。应该借助于Promise then 方法<code>链式调用</code>的特点，尽量保证异步任务的扁平化。</p>
+<p>Promise 对象then方法依然会返回一个Promise对象，链式调用和this实现的并不一样，它会返回一个<strong>全新的Promise对象</strong>。如果不断的链式调用then方法，每一个then方法其实是在为上一个then方法返回的Promise对象去添加<strong>状态明确过后的回调</strong>。这些Promise会依次执行，这样就可以避免不必要的回调。若回调当中返回的不是一个Promise,而是一个普通的值，那么这个值就会被当成当前这个then方法返回的这个Promise中的值,下一个回调当中拿到的就是这个值。若没有返回任何值，那么就返回undefined。</p>
+<p>如果在中间出现异常值（Promise调用失败），该怎么办呢？</p>
+<p>会执行失败的回调。可以使用Promise的catch方法去注册失败的回调，这种方法也更常见一些，因为更适合链式调用。</p>
+<p>一些常用的Promise静态方法：</p>
+<ul>
+<li>Promise.resolve() 快速将一个值转为一个Promise对象。若接收到一个Promise对象，则会原样返回。若传入一个对象，而且这个对象和Promise对象一样可以接收到成功和失败的then方法，该对象也可以作为一个Promise对象去执行，因为带有接口</li>
+<li>Promise.all() 当传入的所有Promise对象全部执行完毕才会执行该Promise。若任何一个失败了，就以失败结束。</li>
+<li>Promise.race() 可以将所有对象合并为Promise一个对象，Promise.race()只会等待第一个Promise对象结束。</li>
+</ul>
+<p>Promise执行时序：</p>
+<p>必须要等待所有的同步代码执行完毕后才会执行异步（不太严谨的说，微任务）。</p>
+<h5 id="Generator异步解决方案"><a href="#Generator异步解决方案" class="headerlink" title="Generator异步解决方案"></a><code>Generator异步解决方案</code></h5><blockquote>
+<p><strong><code>function\*</code></strong> 这种声明方式 (<code>function</code>关键字后跟一个星号）会定义一个<strong>生成器函数</strong> (generator function)，它返回一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Generator"><code>Generator</code></a> 对象。调用一个生成器函数，并不会立即执行这个生成器函数，而会生成一个生成器对象。当我们调用生成器对象的next方法，这个生成器函数的函数体才会被执行。我们可以使用<code>yield</code>关键字向外返回一个值，可以在外部拿到这个值。而yield不会像return一样结束，而是暂停这个的执行。下一次执行生成器对象的next方法时，会从yield的位置继续执行。若中间传入了参数，则作为yield的返回值。</p>
+</blockquote>
+<p>可以使用yield关键字来暂停，以便实现更优的异步编程体验。</p>
+<h5 id="async-await语法糖"><a href="#async-await语法糖" class="headerlink" title="async &amp; await语法糖"></a><code>async &amp; await语法糖</code></h5><blockquote>
+<p>async 函数是使用<code>async</code>关键字声明的函数。async 函数是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction"><code>AsyncFunction</code></a> 构造函数的实例，并且其中允许使用 <code>await</code> 关键字。<code>async</code> 和 <code>await</code> 关键字让我们可以用一种更简洁的方式写出基于 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> 的异步行为，而无需刻意地链式调用 <code>promise</code>。<code>await</code>关键字只能出现在async函数内部。</p>
+</blockquote>
+<p>与Generator异步方案相比，async的写法只有细微的差别。</p>
+<h4 id="2-写法示例"><a href="#2-写法示例" class="headerlink" title="2.写法示例"></a>2.写法示例</h4>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/">无名杀1.10.6 `async content`新写法介绍</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2024-01-17, 17:36:03</p>
+        <p><span>Updated:</span>2024-01-17, 17:42:39</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/" title="无名杀1.10.6 `async content`新写法介绍">http://example.com/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2024/01/17/%E7%8B%82%E6%BE%9C%E5%BC%82%E4%B8%96%E6%89%A9%E5%B1%95%E4%BB%8B%E7%BB%8D/">
+                    狂澜异世扩展介绍INTRODUCTION
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%90%8D%E6%9D%801-10-6-async-content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">无名杀1.10.6 async content新写法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BC%82%E6%AD%A5%E3%80%81%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E3%80%81Promise%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81await-async"><span class="toc-number">1.1.</span> <span class="toc-text">1.异步、回调函数、Promise、生成器、await &amp; async</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">异步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Promise"><span class="toc-number">1.1.3.</span> <span class="toc-text">Promise</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Generator%E5%BC%82%E6%AD%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.4.</span> <span class="toc-text">Generator异步解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#async-await%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="toc-number">1.1.5.</span> <span class="toc-text">async &amp; await语法糖</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%86%99%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">2.写法示例</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+<script>
+    yiliaConfig.toc = ["Hide", "Show", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"无名杀1.10.6 `async content`新写法介绍　| CrazyWorld　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2024/01/17/%E7%8B%82%E6%BE%9C%E5%BC%82%E4%B8%96%E6%89%A9%E5%B1%95%E4%BB%8B%E7%BB%8D/" title="Next: 狂澜异世扩展介绍INTRODUCTION">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/">无名杀1.10.6 `async content`新写法介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E7%8B%82%E6%BE%9C%E5%BC%82%E4%B8%96%E6%89%A9%E5%B1%95%E4%BB%8B%E7%BB%8D/">狂澜异世扩展介绍INTRODUCTION</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/Rust/">Rust&Arch Linux之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/A%20Android%20Workstation%20of%20noname/">A Android Workstation of noname</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/R/">R</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/get.testEncode(URI,bool)/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ONENAME--%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENoname%E7%9A%84%E8%A1%8D%E7%94%9F%E7%89%88/">ONENAME--一个基于Noname的衍生版</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/QT%E5%BC%80%E5%8F%91NOTE/">QT开发NOTE</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/noname%E6%97%A0%E5%90%8D%E6%9D%801%E6%AD%A6%E5%B0%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/">noname无名杀1武将说明文档</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/DOM%E6%93%8D%E4%BD%9C/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/config/">Noname config</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/createEvent&createTrigger/">createEvent&createTrigger</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/chooseButton()%E8%AF%A6%E8%B0%88/">player.chooseButton()详谈</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ipc%E9%80%9A%E4%BF%A1/">ipc通信</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/Noname/">Noname</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2024 Reagan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

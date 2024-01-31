@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Reagan" />
+
+
+
+<meta name="description" content="R  Note by RGX1.第一个R程序第一个程序都是从“Hello World!”开始的。 1print(&amp;#x27;Hello World!&amp;#x27;)  OK,它就是如此简单。 1.1 R基础1.1.1 R的赋值R的赋值有新旧版本之分。在新版本中，可以使用 &#x3D;来进行赋值，而在旧的版本中，只支持-&gt;来赋值。 1234567891011&#x2F;&#x2F; 你可以使用 &#x3D; 来赋值，也可以使用&lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R">
+<meta property="og:url" content="http://example.com/1999/01/17/R/index.html">
+<meta property="og:site_name" content="CrazyWorld">
+<meta property="og:description" content="R  Note by RGX1.第一个R程序第一个程序都是从“Hello World!”开始的。 1print(&amp;#x27;Hello World!&amp;#x27;)  OK,它就是如此简单。 1.1 R基础1.1.1 R的赋值R的赋值有新旧版本之分。在新版本中，可以使用 &#x3D;来进行赋值，而在旧的版本中，只支持-&gt;来赋值。 1234567891011&#x2F;&#x2F; 你可以使用 &#x3D; 来赋值，也可以使用&lt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="1999-01-17T09:36:03.000Z">
+<meta property="article:modified_time" content="2024-01-17T09:41:49.578Z">
+<meta property="article:author" content="Reagan">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="CrazyWorld" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>R | CrazyWorld</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-R" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/1999/01/17/R/" class="article-date">
+      <time datetime="1999-01-17T09:36:03.000Z" itemprop="datePublished">1999-01-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      R
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="R-Note-by-RGX"><a href="#R-Note-by-RGX" class="headerlink" title="R  Note by RGX"></a>R  Note by RGX</h1><h2 id="1-第一个R程序"><a href="#1-第一个R程序" class="headerlink" title="1.第一个R程序"></a>1.第一个R程序</h2><p>第一个程序都是从“Hello World!”开始的。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print<span class="punctuation">(</span><span class="string">&#x27;Hello World!&#x27;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>OK,它就是如此简单。</p>
+<h3 id="1-1-R基础"><a href="#1-1-R基础" class="headerlink" title="1.1 R基础"></a>1.1 R基础</h3><h4 id="1-1-1-R的赋值"><a href="#1-1-1-R的赋值" class="headerlink" title="1.1.1 R的赋值"></a>1.1.1 R的赋值</h4><p>R的赋值有新旧版本之分。在新版本中，可以使用 <code>=</code>来进行赋值，而在旧的版本中，只支持<code>-&gt;</code>来赋值。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 你可以使用 <span class="operator">=</span> 来赋值，也可以使用<span class="operator">&lt;-</span>来赋值</span><br><span class="line">a<span class="operator">=</span><span class="number">2</span></span><br><span class="line">b<span class="operator">=</span><span class="number">3</span></span><br><span class="line">print<span class="punctuation">(</span>a<span class="operator">+</span>b<span class="punctuation">)</span></span><br><span class="line">a<span class="operator">&lt;-</span><span class="number">2</span></span><br><span class="line">b<span class="operator">&lt;-</span><span class="number">3</span></span><br><span class="line">print<span class="punctuation">(</span>a<span class="operator">+</span>b<span class="punctuation">)</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 你也可以这么写，使用<span class="operator">-&gt;</span>来进行赋值，指向被赋值的变量</span><br><span class="line"><span class="number">2</span><span class="operator">-&gt;</span>a</span><br><span class="line">b<span class="operator">&lt;-</span><span class="number">3</span></span><br><span class="line">print<span class="punctuation">(</span>a<span class="operator">+</span>b<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-2-R的变量"><a href="#1-1-2-R的变量" class="headerlink" title="1.1.2 R的变量"></a>1.1.2 R的变量</h4><p>R有效的变量名称由<strong>字母，数字以及点号 . 或下划线 _ 组成</strong>，变量名称<strong>以字母或点</strong>开头。</p>
+<p>查看R的已有的（<strong>还未从内存释放掉的</strong>）自定义变量：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-print-输出"><a href="#1-1-3-print-输出" class="headerlink" title="1.1.3 print()输出"></a>1.1.3 print()输出</h4><blockquote>
+<p>print(x, …)</p>
+<h4 id="S3-method-for-class-‘factor’"><a href="#S3-method-for-class-‘factor’" class="headerlink" title="S3 method for class ‘factor’"></a>S3 method for class ‘factor’</h4><p>print(x, quote &#x3D; FALSE, max.levels &#x3D; NULL,<br>      width &#x3D; getOption(“width”), …)</p>
+<h4 id="S3-method-for-class-‘table’"><a href="#S3-method-for-class-‘table’" class="headerlink" title="S3 method for class ‘table’"></a>S3 method for class ‘table’</h4><p>print(x, digits &#x3D; getOption(“digits”), quote &#x3D; FALSE,<br>      na.print &#x3D; “”, zero.print &#x3D; “0”,<br>      right &#x3D; is.numeric(x) || is.complex(x),<br>      justify &#x3D; “none”, …)</p>
+<h4 id="S3-method-for-class-‘function’"><a href="#S3-method-for-class-‘function’" class="headerlink" title="S3 method for class ‘function’"></a>S3 method for class ‘function’</h4><p>print(x, useSource &#x3D; TRUE, …)</p>
+</blockquote>
+<p>print()用来输出数字、字符等，就和其他的编程语言那样，但是除了这些之外，print()似乎还有其他更多的用途，在不同的地方用途不一样。</p>
+<h4 id="1-1-4-cat-函数"><a href="#1-1-4-cat-函数" class="headerlink" title="1.1.4 cat()函数"></a>1.1.4 cat()函数</h4><blockquote>
+<p>cat(… , file &#x3D; “”, sep &#x3D; “ “, fill &#x3D; FALSE, labels &#x3D; NULL,<br>    append &#x3D; FALSE)</p>
+</blockquote>
+<p>cat()函数可以拼接输出结果的多个字符串。cat()函数会在每两个元素之间加上自动加上空格。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat<span class="punctuation">(</span>a<span class="punctuation">,</span><span class="string">&#x27;我&#x27;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>除此之外，cat()函数还被用来之间输出结果到文件。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat<span class="punctuation">(</span><span class="string">&#x27;Hello R!&#x27;</span><span class="punctuation">,</span>file<span class="operator">=</span><span class="string">&#x27;./Hello.r&#x27;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>？绝对路径与相对路径</p>
+<p>绝对路径：文件真实的存放位置</p>
+<p>相对路径：相对于当前位置的路径</p>
+<p><code>.</code> 表示当前目录，<code>..</code>表示上一级目录，<code>~</code>表示家目录</p>
+</blockquote>
+<h4 id="1-1-5-sink-函数"><a href="#1-1-5-sink-函数" class="headerlink" title="1.1.5 sink()函数"></a>1.1.5 sink()函数</h4><blockquote>
+<p>sink(file &#x3D; NULL, append &#x3D; FALSE, type &#x3D; c(“output”, “message”),<br>     split &#x3D; FALSE)</p>
+<p>sink.number(type &#x3D; c(“output”, “message”))</p>
+</blockquote>
+<p>sink() 函数可以把控制台输出的文字直接输出到文件中去，<strong>覆盖写入</strong>。若需要追加写入，则需要设置append参数。</p>
+<h4 id="1-1-6-readlines-函数"><a href="#1-1-6-readlines-函数" class="headerlink" title="1.1.6 readlines()函数"></a>1.1.6 readlines()函数</h4><p>readlines()函数从一个文件中读取其字符串。</p>
+<blockquote>
+<p>readLines(con &#x3D; stdin(), n &#x3D; -1L, ok &#x3D; TRUE, warn &#x3D; TRUE,<br>          encoding &#x3D; “unknown”, skipNul &#x3D; FALSE)</p>
+</blockquote>
+<h3 id="1-2-R的使用"><a href="#1-2-R的使用" class="headerlink" title="1.2 R的使用"></a>1.2 R的使用</h3><h4 id="1-2-1-工作目录"><a href="#1-2-1-工作目录" class="headerlink" title="1.2.1 工作目录"></a>1.2.1 工作目录</h4><p>getwd() : 获取当前工作目录<br>getwd() : 设置当前工作目录</p>
+<h4 id="1-2-2-R的注释"><a href="#1-2-2-R的注释" class="headerlink" title="1.2.2 R的注释"></a>1.2.2 R的注释</h4><p>R只支持单行注释。用<code>#</code>就可以。</p>
+<h4 id="1-2-3-查看与转换数据类型，class、mode和typeof"><a href="#1-2-3-查看与转换数据类型，class、mode和typeof" class="headerlink" title="1.2.3 查看与转换数据类型，class、mode和typeof"></a>1.2.3 查看与转换数据类型，class、mode和typeof</h4><p>is和as</p>
+<p>is用来判断是否为某一数据类型，返回逻辑值。as用于转换为某一类。</p>
+<blockquote>
+<p>as(object, Class, strict&#x3D;TRUE, ext)</p>
+<p>as(object, Class) &lt;- value</p>
+</blockquote>
+<p>class</p>
+<p>mode</p>
+<p>typoeof</p>
+<h2 id="2-R的基础运算"><a href="#2-R的基础运算" class="headerlink" title="2.R的基础运算"></a>2.R的基础运算</h2><h3 id="2-1-数字运算"><a href="#2-1-数字运算" class="headerlink" title="2.1 数字运算"></a>2.1 数字运算</h3><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">()</td>
+<td align="center">括号</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">乘方</td>
+</tr>
+<tr>
+<td align="center">%%</td>
+<td align="center">求余</td>
+</tr>
+<tr>
+<td align="center">%&#x2F;%</td>
+<td align="center">整除</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">乘</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">加</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">减</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-关系运算"><a href="#2-2-关系运算" class="headerlink" title="2.2 关系运算"></a>2.2 关系运算</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于</td>
+</tr>
+</tbody></table>
+<p>R支持向量运算，如果为两个向量之间比大小，那就是向量对应的元素在比</p>
+<h3 id="2-3-逻辑运算符"><a href="#2-3-逻辑运算符" class="headerlink" title="2.3 逻辑运算符"></a>2.3 逻辑运算符</h3><p>逻辑运算符比较两个向量，将第一向量与第二向量的每个元素进行比较，结果返回一个布尔值</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>两个元素都为 TRUE，则结果为 TRUE，否则为 FALSE。</td>
+</tr>
+<tr>
+<td>|</td>
+<td>如果两个元素中有一个为 TRUE，则结果为 TRUE，如果都为 FALSE，则返回 FALSE</td>
+</tr>
+<tr>
+<td>!</td>
+<td>取相反的逻辑值</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>只比较两个向量的第一个元素，如果两个元素都为 TRUE，则结果为 TRUE，否则为 FALSE。</td>
+</tr>
+<tr>
+<td>||</td>
+<td>只比较两个向量的第一个元素，，如果两个元素中有一个为 TRUE，则结果为 TRUE，如果都为 FALSE，则返回 FALSE。</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-赋值运算符"><a href="#2-4-赋值运算符" class="headerlink" title="2.4 赋值运算符"></a>2.4 赋值运算符</h3><p>R语言的赋值运算符很多</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>向左赋值</td>
+</tr>
+<tr>
+<td>&lt;-</td>
+<td>向左赋值</td>
+</tr>
+<tr>
+<td>&lt;&lt;-</td>
+<td>向左赋值</td>
+</tr>
+<tr>
+<td>-&gt;</td>
+<td>向右赋值</td>
+</tr>
+<tr>
+<td>-&gt;&gt;</td>
+<td>向右赋值</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-其他运算符"><a href="#2-5-其他运算符" class="headerlink" title="2.5 其他运算符"></a>2.5 其他运算符</h3><p>R 语言还包含了一些特别的运算符。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:</td>
+<td>创建一系列数字的向量</td>
+</tr>
+<tr>
+<td>%in%</td>
+<td>用于判断元素是否在向量里，返回布尔值，有的话返回 TRUE，没有返回 FALSE。</td>
+</tr>
+<tr>
+<td>%*%</td>
+<td>用于矩阵与它转置的矩阵相乘。</td>
+</tr>
+</tbody></table>
+<h3 id="2-6-数学函数Math"><a href="#2-6-数学函数Math" class="headerlink" title="2.6 数学函数Math"></a>2.6 数学函数Math</h3><table>
+<thead>
+<tr>
+<th><strong>常用的数学函数</strong></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqrt(n)</td>
+<td>n的平方根</td>
+</tr>
+<tr>
+<td>exp(n)</td>
+<td>自然对数e的n次方</td>
+</tr>
+<tr>
+<td>log(m,n)</td>
+<td>m的对数函数，返回n的几次方等于m</td>
+</tr>
+<tr>
+<td>log10(m)</td>
+<td>相当于log(m,10)</td>
+</tr>
+<tr>
+<td>round(m[,n])</td>
+<td>对 n 保留四舍五入取整&#x2F; m 位小数四舍五入</td>
+</tr>
+<tr>
+<td>ceiling(n)</td>
+<td>向上取整</td>
+</tr>
+<tr>
+<td>floor(n)</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td><strong>三角函数</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>sin()</td>
+<td></td>
+</tr>
+<tr>
+<td>cos()</td>
+<td></td>
+</tr>
+<tr>
+<td>tan()</td>
+<td></td>
+</tr>
+<tr>
+<td>asin()</td>
+<td></td>
+</tr>
+<tr>
+<td>acos()</td>
+<td></td>
+</tr>
+<tr>
+<td>atan()</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>概率论与数理统计</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>dnorm()</td>
+<td></td>
+</tr>
+<tr>
+<td>pnorm()</td>
+<td></td>
+</tr>
+<tr>
+<td>qnorm()</td>
+<td></td>
+</tr>
+<tr>
+<td>rnorm()</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>注意</strong>：R 中的 round 函数有些情况下可能会”舍掉五”。</p>
+<p>当取整位是偶数的时候，五也会被舍去，这一点与 C 语言有所不同。</p>
+<p>R 的三角函数是弧度制。</p>
+<p>它们的名字都以 norm 结尾，代表”正态分布”。</p>
+<p>分布函数名字的前缀有四种：</p>
+<ul>
+<li><strong>d</strong> - 概率密度函数</li>
+<li><strong>p</strong> - 概率密度积分函数（从无限小到 x 的积分）</li>
+<li><strong>q</strong> - 分位数函数</li>
+<li><strong>r</strong> - 随机数函数（常用于概率仿真）</li>
+</ul>
+</blockquote>
+<h2 id="3-R的数据类型"><a href="#3-R的数据类型" class="headerlink" title="3. R的数据类型"></a>3. R的数据类型</h2><p>有时候，经常会提到一个东西：数据类型。而R语言与其他编程语言不同，它的数据类型为：</p>
+<ul>
+<li>数字:1,2,3,4…</li>
+<li>字符串:’a’,’b’,”c”…</li>
+<li>布尔值(逻辑):TRUE,FALSE</li>
+</ul>
+<h2 id="4-R的对象类型与数据结构"><a href="#4-R的对象类型与数据结构" class="headerlink" title="4. R的对象类型与数据结构"></a>4. R的对象类型与数据结构</h2><h3 id="4-1-向量-Vector"><a href="#4-1-向量-Vector" class="headerlink" title="4.1 向量 Vector"></a>4.1 向量 Vector</h3><p>向量是最基本的对象类型。是一维的数据结构，可以包含多种数据类型，例如：整数、浮点数、字符等。</p>
+<h4 id="创建向量"><a href="#创建向量" class="headerlink" title="创建向量"></a>创建向量</h4><blockquote>
+<h3 id="S3-Generic-function"><a href="#S3-Generic-function" class="headerlink" title="S3 Generic function"></a>S3 Generic function</h3><p>c(…)</p>
+<h3 id="Default-S3-method"><a href="#Default-S3-method" class="headerlink" title="Default S3 method:"></a>Default S3 method:</h3><p>c(…, recursive &#x3D; FALSE, use.names &#x3D; TRUE)</p>
+</blockquote>
+<p>c()常常被用于创建一个列表或一个向量。</p>
+<h4 id="向量运算"><a href="#向量运算" class="headerlink" title="向量运算"></a>向量运算</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span></span><br><span class="line">b<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span><span class="number">9</span><span class="punctuation">)</span></span><br><span class="line">print<span class="punctuation">(</span>a<span class="operator">+</span>b<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>这里把两个二维向量相加，得到一个新的二维向量 </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> a<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span></span><br><span class="line"><span class="operator">&gt;</span> b<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span><span class="number">9</span><span class="punctuation">)</span></span><br><span class="line"><span class="operator">&gt;</span> print<span class="punctuation">(</span>a<span class="operator">+</span>b<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span>  <span class="number">1</span> <span class="number">11</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="向量的下标"><a href="#向量的下标" class="headerlink" title="向量的下标"></a>向量的下标</h4><p>使用<code>[ ]</code>来取得元素，但是R语言与其他语言不同，下标表示是第几个元素。向量中的每一个元素可以通过下标单独<strong>取出</strong>：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> a<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">9</span><span class="punctuation">)</span></span><br><span class="line"><span class="operator">&gt;</span> a<span class="punctuation">[</span><span class="number">3</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>除此之外，向量的下标还可以有别的用途。比较常见的是：</p>
+<p><strong>切片</strong>：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> a<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">9</span><span class="punctuation">)</span></span><br><span class="line"><span class="operator">&gt;</span> a<span class="punctuation">[</span><span class="number">2</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>去除</strong>某一项：</p>
+<blockquote>
+<p>！下标可以为负，表示去掉第n个，然后返回去掉后的向量，并不会修改原向量的值。这里和其他编程语言稍有不同。</p>
+</blockquote>
+<h4 id="向量统计"><a href="#向量统计" class="headerlink" title="向量统计"></a>向量统计</h4><h4 id="向量生成"><a href="#向量生成" class="headerlink" title="向量生成"></a>向量生成</h4><h3 id="4-2-列表-List"><a href="#4-2-列表-List" class="headerlink" title="4.2 列表 List"></a>4.2 列表 List</h3><h3 id="4-3-矩阵-Matrix"><a href="#4-3-矩阵-Matrix" class="headerlink" title="4.3 矩阵 Matrix"></a>4.3 矩阵 Matrix</h3><h3 id="4-4-数组-Array"><a href="#4-4-数组-Array" class="headerlink" title="4.4 数组 Array"></a>4.4 数组 Array</h3><h3 id="4-5-因子-Factor"><a href="#4-5-因子-Factor" class="headerlink" title="4.5 因子 Factor"></a>4.5 因子 Factor</h3><p>4.6 数据框 DataFrame</p>
+<p>4.7 日期和时间 Dates and Times</p>
+<p>4.8 复数 Complex</p>
+<p>4.9 逻辑型 Logical</p>
+<p>4.10 NULL</p>
+<p>4.11 环境 Environment</p>
+<p>4.12 函数 Function</p>
+<p>4.13 模型 Model</p>
+<p>4.14 公式 Formula</p>
+<h2 id="5-R包"><a href="#5-R包" class="headerlink" title="5.R包"></a>5.R包</h2><h2 id="6-绘图专栏"><a href="#6-绘图专栏" class="headerlink" title="6.绘图专栏"></a>6.绘图专栏</h2><h2 id="7-计量专栏"><a href="#7-计量专栏" class="headerlink" title="7.计量专栏"></a>7.计量专栏</h2>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/1999/01/17/R/">R</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>1999-01-17, 17:36:03</p>
+        <p><span>Updated:</span>2024-01-17, 17:41:49</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/1999/01/17/R/" title="R">http://example.com/1999/01/17/R/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/1999/01/17/R/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/1999/01/17/A%20Android%20Workstation%20of%20noname/">
+                    A Android Workstation of noname
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/1999/01/17/get.testEncode(URI,bool)/">
+                    DOM操作
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#R-Note-by-RGX"><span class="toc-number">1.</span> <span class="toc-text">R  Note by RGX</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AC%AC%E4%B8%80%E4%B8%AAR%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1.第一个R程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-R%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 R基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-R%E7%9A%84%E8%B5%8B%E5%80%BC"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1 R的赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-R%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.2 R的变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-print-%E8%BE%93%E5%87%BA"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1.1.3 print()输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3-method-for-class-%E2%80%98factor%E2%80%99"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">S3 method for class ‘factor’</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3-method-for-class-%E2%80%98table%E2%80%99"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">S3 method for class ‘table’</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3-method-for-class-%E2%80%98function%E2%80%99"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">S3 method for class ‘function’</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-cat-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.7.</span> <span class="toc-text">1.1.4 cat()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-5-sink-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.8.</span> <span class="toc-text">1.1.5 sink()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-6-readlines-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.9.</span> <span class="toc-text">1.1.6 readlines()函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-R%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 R的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.2.1 工作目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-R%E7%9A%84%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">1.2.2 R的注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E6%9F%A5%E7%9C%8B%E4%B8%8E%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%8Cclass%E3%80%81mode%E5%92%8Ctypeof"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">1.2.3 查看与转换数据类型，class、mode和typeof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-R%E7%9A%84%E5%9F%BA%E7%A1%80%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">2.R的基础运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B0%E5%AD%97%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 数字运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 关系运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 逻辑运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 赋值运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E5%85%B6%E4%BB%96%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 其他运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0Math"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 数学函数Math</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-R%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. R的数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-R%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">4. R的对象类型与数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%90%91%E9%87%8F-Vector"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 向量 Vector</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%90%91%E9%87%8F"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">创建向量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Generic-function"><span class="toc-number">1.4.2.</span> <span class="toc-text">S3 Generic function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-S3-method"><span class="toc-number">1.4.3.</span> <span class="toc-text">Default S3 method:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">向量运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E4%B8%8B%E6%A0%87"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">向量的下标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">向量统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%94%9F%E6%88%90"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">向量生成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%88%97%E8%A1%A8-List"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.2 列表 List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%9F%A9%E9%98%B5-Matrix"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.3 矩阵 Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%95%B0%E7%BB%84-Array"><span class="toc-number">1.4.6.</span> <span class="toc-text">4.4 数组 Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%9B%A0%E5%AD%90-Factor"><span class="toc-number">1.4.7.</span> <span class="toc-text">4.5 因子 Factor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-R%E5%8C%85"><span class="toc-number">1.5.</span> <span class="toc-text">5.R包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%BB%98%E5%9B%BE%E4%B8%93%E6%A0%8F"><span class="toc-number">1.6.</span> <span class="toc-text">6.绘图专栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%AE%A1%E9%87%8F%E4%B8%93%E6%A0%8F"><span class="toc-number">1.7.</span> <span class="toc-text">7.计量专栏</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+<script>
+    yiliaConfig.toc = ["Hide", "Show", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"R　| CrazyWorld　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/1999/01/17/A%20Android%20Workstation%20of%20noname/" title="Pre: A Android Workstation of noname">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/1999/01/17/get.testEncode(URI,bool)/" title="Next: DOM操作">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/">无名杀1.10.6 `async content`新写法介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E7%8B%82%E6%BE%9C%E5%BC%82%E4%B8%96%E6%89%A9%E5%B1%95%E4%BB%8B%E7%BB%8D/">狂澜异世扩展介绍INTRODUCTION</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/Rust/">Rust&Arch Linux之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/A%20Android%20Workstation%20of%20noname/">A Android Workstation of noname</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/R/">R</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/get.testEncode(URI,bool)/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ONENAME--%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENoname%E7%9A%84%E8%A1%8D%E7%94%9F%E7%89%88/">ONENAME--一个基于Noname的衍生版</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/QT%E5%BC%80%E5%8F%91NOTE/">QT开发NOTE</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/noname%E6%97%A0%E5%90%8D%E6%9D%801%E6%AD%A6%E5%B0%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/">noname无名杀1武将说明文档</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/DOM%E6%93%8D%E4%BD%9C/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/config/">Noname config</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/createEvent&createTrigger/">createEvent&createTrigger</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/chooseButton()%E8%AF%A6%E8%B0%88/">player.chooseButton()详谈</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ipc%E9%80%9A%E4%BF%A1/">ipc通信</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/Noname/">Noname</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2024 Reagan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

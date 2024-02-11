@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Reagan" />
+
+
+
+<meta name="description" content="双重差分模型介绍入门1.实验与数据 在社会科学的学术研究中，根据数据集的不同收集过程，实验可分为：  理想实验 准实验 自然实验  ​        在现代金融学学术研究中，通过仔细设计与收集，许多商业活动的数据可以被运用为“准实验”。当选取自然状态下发生的事件作为研究样本时，由于这些数据在形成过程中较少受到人为设计的实验因素的干扰，其结果往往会更具说服力。而且，由于能够妥善解决金融学研究所涉及的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双重差分模型介绍入门">
+<meta property="og:url" content="http://example.com/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="CrazyWorld">
+<meta property="og:description" content="双重差分模型介绍入门1.实验与数据 在社会科学的学术研究中，根据数据集的不同收集过程，实验可分为：  理想实验 准实验 自然实验  ​        在现代金融学学术研究中，通过仔细设计与收集，许多商业活动的数据可以被运用为“准实验”。当选取自然状态下发生的事件作为研究样本时，由于这些数据在形成过程中较少受到人为设计的实验因素的干扰，其结果往往会更具说服力。而且，由于能够妥善解决金融学研究所涉及的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-02-11T09:36:03.000Z">
+<meta property="article:modified_time" content="2024-02-11T11:02:09.981Z">
+<meta property="article:author" content="Reagan">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="CrazyWorld" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>双重差分模型介绍入门 | CrazyWorld</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yjcreaganx@outlook.com" title="Email"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-双重差分模型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/" class="article-date">
+      <time datetime="2024-02-11T09:36:03.000Z" itemprop="datePublished">2024-02-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      双重差分模型介绍入门
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="双重差分模型介绍入门"><a href="#双重差分模型介绍入门" class="headerlink" title="双重差分模型介绍入门"></a>双重差分模型介绍入门</h1><h2 id="1-实验与数据"><a href="#1-实验与数据" class="headerlink" title="1.实验与数据"></a>1.实验与数据</h2><blockquote>
+<p>在社会科学的学术研究中，根据数据集的不同收集过程，实验可分为：</p>
+<ul>
+<li>理想实验</li>
+<li>准实验</li>
+<li>自然实验</li>
+</ul>
+<p>​        在现代金融学学术研究中，通过仔细设计与收集，许多商业活动的数据可以被运用为“<strong>准实验</strong>”。当选取自然状态下发生的事件作为研究样本时，由于这些数据在形成过程中较少受到人为设计的实验因素的干扰，其结果往往会更具说服力。而且，由于能够妥善解决金融学研究所涉及的复杂情况，“准实验”在金融中有更广泛的应用。</p>
+<p>​	“准实验”下的数据模型通常呈现混合截面的形态，十分适用于综列数据模型。双重差分模型常规使用“准实验”数据集，因此可以减小内生性问题带来的影响。“<strong>实验组</strong>”通常为受政策或事件影响的样本集，而相应的“<strong>对照组</strong>”则为没有受到政策和事件影响的样本集。对这两个数据集之间的表现差异进行经济学测量之后，可以得出显著或不显著的结论，进一步分析则得到研究结果。简单明了，操作容易，在金融学领域内大受欢迎，使用非常广泛。</p>
+</blockquote>
+<blockquote>
+<h6 id="源•起"><a href="#源•起" class="headerlink" title="源•起"></a>源•起</h6><p>​	双重差分模型最初为英国医学界的研究模型，在1855年被J•S用于研究霍乱。通过绘制传播人数地图，发现水井周围死亡人数众多，而城市中其他水源周围则几乎没有死亡病例。因此，解开了霍乱传播方式的秘密，并最终控制了霍乱。</p>
+<p>​	在后续几十年的发展过程中，陆续演变出<code>多期双重差分</code>，<code>三重差分(DDD)</code>，<code>双重差分倾向得分匹配(PSM-DID)</code>等模型。</p>
+<p>​	根据政策影响时间是否一致，实验组与对照组的时间变化趋势是否相同等两个因素，在不同的研究问题中适用不同的模型。</p>
+<hr>
+
+<p>1.基础的***双重差分模型(DID)***用于测量两个数据集在相同的时间点，受单一政策或事件的冲击下，实验组与对照组之间表现的差异，从而检验政策或事件的影响。</p>
+<p>2.<em><strong>多期双重差分</strong></em>在基础的双重差分模型的理论基础上，增加关于多时点的变量，以便能够对发生在不同时间段的政策的平均处理效应进行检验。</p>
+<p>3.<em><strong>三重差分</strong></em>则是在双重差分的基础上又进行一次差分，因此能够对实验组和对照组的不同趋势进行控制，达到均衡对比差异的目的。</p>
+<p>4.<em><strong>双重差分倾向得分匹配模型</strong></em>增加了实验组和对照组样本的经济学匹配过程，通过控制变量的匹配保持实验组和对照组的平行趋势，为双重差分模型的使用创造条件，并减少在测算政策和事件差异时受到其他极端因素的影响。</p>
+</blockquote>
+<h2 id="2-模型原理与变型模型"><a href="#2-模型原理与变型模型" class="headerlink" title="2.模型原理与变型模型"></a>2.模型原理与变型模型</h2><h3 id="1-基础双重差分模型-DID"><a href="#1-基础双重差分模型-DID" class="headerlink" title="1)基础双重差分模型(DID)"></a>1)基础双重差分模型(DID)</h3><p>​	双重差分模型，又称之为倍差法，是差分模型的基础方程。其基本思路是对实验组和对照组的差异进行测算。在差分模型中，双重差分模型的运用是最为简单和广泛的。其他差分模型均建立在双重差分的基础上，因此双重差分模型的学习和推导是其他更复杂差分模型的基础。</p>
+<blockquote>
+<p>这里有一个例子：</p>
+<p>​	Z国的S省推行了一项绿色金融政策，如何才能知道这项政策是否有效呢？为了衡量政策的有效性，选取S省的对照样本G省数据，将绿色金融政策(Policy)的实验组S省记为did&#x3D;1；将没有推行绿色金融政策的对照组G省记为did&#x3D;0</p>
+<p>​	我们知道，成功的绿色金融政策可以减小这些企业的融资压力，促进企业的技术创新和绿色转型。那么，企业的技术专利将会显著增加。这样S省和G省的技术专利差值就会包含绿色金融政策带来的影响。但同时也要考虑到这种差异也有可能是S省和G省的其他区位因素带来的，比如一个在沿海地区，人才济济，另一个位于偏远的内陆地区，环境恶劣、人才青黄不接。为了减少其他因素的影响，我们首先就需要计算出在没有绿色金融政策时，S省和G省的技术专利差值，在排除这个差异后，就能得到绿色金融政策的影响。我们需要观察两期数据(Time)，即：</p>
+<p>​	t&#x3D;0，实验组与对照组都没有绿色金融政策扶持的阶段</p>
+<p>​	t&#x3D;1，实验组实行绿色金融政策扶持而对照组没有实行绿色金融政策的阶段</p>
+<p>​	在方程中取交互项Treatment&#x3D;Time * Policy衡量样本所处的阶段。综合两个维度，我们可以根据是否实施绿色金融政策以及不同的阶段产生四个分类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">交互项Treatment</th>
+<th align="center">S省</th>
+<th align="center">G省</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政策实施前</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">政策实施后</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>​	先对t&#x3D;0时的实验组和对照组的技术专利数进行第一次差分，公式为:<br>$$<br>Y_{it}&#x3D;lnPat<br>$$</p>
+<p>$$<br>\Delta Y_{it}&#x3D;\Sigma(Y_{i0}^S-Y_{i0}^G)<br>$$</p>
+<p>​	其中$\Delta Y_{it}$衡量两省专利数的差值，$Y_{i0}^S$是S省在政策实施前的专利数，$Y_{i0}^G$是G省在政策实施前的专利数。我们用各省的专利数衡量绿色金融政策对于技术创新是否有用，并通过求对数减小研究误差，在这一步中可以计算出各省专利数的变化增长率，即各省创新能力的自然增长趋势。此外，我们通过上述方程可得知当没有政策影响时，S、G两省技术创新之间的差距。这是第一次差分的过程，同时，这次差分也用于检验两个组别的样本之间是否具有相同趋势，也就是对照组的选择是否合适。</p>
+<p>​	通过上述思考可知，技术创新的增长包含自然增长趋势和受到绿色金融政策影响两部分，再考虑其他可能的突发情况作为残差项，可以列出以下方程：<br>$$<br>Y_{it}&#x3D;\alpha * Time+\beta<em>Policy+\gamma</em>Time*Policy+\epsilon<br>$$<br>​	其中，$\alpha$为不同时期的影响程度，$\beta$为政策的影响，$\gamma$为处理效应，$\epsilon$为残差项。</p>
+<p>​	将上述进行推广，可以得到通常表达形式：<br>$$<br>Y_{it}&#x3D;\alpha * d_t+\beta<em>d_u+\gamma</em>d_t*d_u+\epsilon<br>$$<br>​	其中，$d_t$为政策实施前后的分组虚拟变量，$d_u$为是否受政策影响的分组虚拟变量。</p>
+</blockquote>
+<h3 id="2-多期双重差分模型-异时DID"><a href="#2-多期双重差分模型-异时DID" class="headerlink" title="2)多期双重差分模型(异时DID)"></a>2)多期双重差分模型(异时DID)</h3><p>​	多重差分模型又称之为异时DID,在学术研究中，尤其是政策研究中十分常用。双重差分模型适用于所有样本开始受到政策影响的时间相同的情况，但是在现实经济活动中，会出现各样本接受处理时间点不一致的情况。沿用上述案例，如果绿色金融政策在各省份的推出时间不同，对企业开始产生影响的时间不一致，那么则需要加入关于不同时间样本的区分项，将$d_t$变为$d_{i,t}$<br>$$<br>Y_{it}&#x3D;\alpha * d_{i,t}+\beta<em>d_u+\gamma</em>d_{i,t}*d_u+\epsilon<br>$$<br>​	同时，我们不再关注单独的虚拟变量系数，而应该关注平均处理效应。对于样本$i$，在时间序列${t-a,t+b}$中，受政策冲击的情况只有一次，则处理效应矩阵如下：<br>$$<br>n_j&#x3D;{d_{i,t-a},..,d_{i,t-1},d_{i,t},…,d_{i,t+b}}&#x3D;\begin{bmatrix}<br>n_{-a}  \<br>n_{-1}\<br>n_0  \<br>n_b\<br>\end{bmatrix}<br>$$<br>​	那么，$\gamma$则为平均处理效应，而且受政策冲击前，各个样本的处理效应为0，因此<br>$$<br>那么，\gamma&#x3D;(\gamma_{-a}+\gamma_{-2}+\gamma_{-1})&#x2F;n<br>$$<br>即，<strong>每期的平均处理效应等于交互项乘数减去政策前各期系数的算术平均数</strong>。</p>
+<h3 id="3-倾向匹配双重差分模型-PSM-DID"><a href="#3-倾向匹配双重差分模型-PSM-DID" class="headerlink" title="3)倾向匹配双重差分模型(PSM-DID)"></a>3)倾向匹配双重差分模型(PSM-DID)</h3><p>​	在学术研究的样本选择中，由于日常经济的复杂性、选择样本的局限性等原因，学者们不得不对样本进行手动筛选或增加主观因素，因此难以达到完全随机选择，而且该过程会对样本和实验数据造成选择性偏差。除此之外，当庞杂的样本之间缺乏平行趋势时，就无法使用双重差分模型。针对这种情况，计量经济学常用的方法是先对样本进行倾向匹配，使得样本在选中的变量中具有平行趋势，避免个体的极端性差异影响实验结果，同时，也能确保选中的样本具有代表性。然后，将与实验组形成对照的样本进行组合，生产经过计量经济学筛选的对照样本集。倾向匹配的衡量维度一般需要通过文献综述和反复尝试决定，避免随意设置筛选变量的情况。</p>
+<p>​	倾向匹配在构建本文第一个方程之前需要完成，对于实验组的样本$a$，找到$b$放入对照组，使得样本$a$和样本$b$在影响处理效应的其他观测值尽可能具有平行趋势，同时要确保样本$a$与样本$b$进入样本集的概率相近，避免人为因素的选择性因素干扰。通常情况下，我们几乎找不到100%匹配的实验组和对照组，因此要选取适当维度来设定最可能影响处理效应的变量。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/">双重差分模型介绍入门</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2024-02-11, 17:36:03</p>
+        <p><span>Updated:</span>2024-02-11, 19:02:09</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/" title="双重差分模型介绍入门">http://example.com/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/">
+                    无名杀1.10.6 `async content`新写法介绍
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">双重差分模型介绍入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9E%E9%AA%8C%E4%B8%8E%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.</span> <span class="toc-text">1.实验与数据</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%BA%90%E2%80%A2%E8%B5%B7"><span class="toc-number">1.1.0.0.0.1.</span> <span class="toc-text">源•起</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8F%98%E5%9E%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">2.模型原理与变型模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B-DID"><span class="toc-number">1.2.1.</span> <span class="toc-text">1)基础双重差分模型(DID)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%A4%9A%E6%9C%9F%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B-%E5%BC%82%E6%97%B6DID"><span class="toc-number">1.2.2.</span> <span class="toc-text">2)多期双重差分模型(异时DID)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%80%BE%E5%90%91%E5%8C%B9%E9%85%8D%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B-PSM-DID"><span class="toc-number">1.2.3.</span> <span class="toc-text">3)倾向匹配双重差分模型(PSM-DID)</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+<script>
+    yiliaConfig.toc = ["Hide", "Show", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"双重差分模型介绍入门　| CrazyWorld　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/" title="Next: 无名杀1.10.6 `async content`新写法介绍">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/02/11/%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B/">双重差分模型介绍入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E6%97%A0%E5%90%8D%E6%9D%801.10.6%20async%20content%E6%96%B0%E5%86%99%E6%B3%95%E4%BB%8B%E7%BB%8D/">无名杀1.10.6 `async content`新写法介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/%E7%8B%82%E6%BE%9C%E5%BC%82%E4%B8%96%E6%89%A9%E5%B1%95%E4%BB%8B%E7%BB%8D/">狂澜异世扩展介绍INTRODUCTION</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/Rust/">Rust&Arch Linux之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2024/01/17/cargo/">cargo用法</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/A%20Android%20Workstation%20of%20noname/">A Android Workstation of noname</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/R/">R</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/get.testEncode(URI,bool)/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ONENAME--%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENoname%E7%9A%84%E8%A1%8D%E7%94%9F%E7%89%88/">ONENAME--一个基于Noname的衍生版</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/QT%E5%BC%80%E5%8F%91NOTE/">QT开发NOTE</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/noname%E6%97%A0%E5%90%8D%E6%9D%801%E6%AD%A6%E5%B0%86%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/">noname无名杀1武将说明文档</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/DOM%E6%93%8D%E4%BD%9C/">DOM操作</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/config/">Noname config</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/createEvent&createTrigger/">createEvent&createTrigger</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/chooseButton()%E8%AF%A6%E8%B0%88/">player.chooseButton()详谈</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/ipc%E9%80%9A%E4%BF%A1/">ipc通信</a></li><li class="post-list-item"><a class="post-list-link" href="/1999/01/17/Noname/">Noname</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2024 Reagan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
